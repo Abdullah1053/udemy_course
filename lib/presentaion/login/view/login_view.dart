@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:udemy_course/app/di.dart';
+import 'package:udemy_course/domain/usecase/login_usecase.dart';
 import 'package:udemy_course/presentaion/login/view_model/login_viewmodel.dart';
 import 'package:udemy_course/presentaion/resources/assets_manager.dart';
 import 'package:udemy_course/presentaion/resources/color_manager.dart';
@@ -15,7 +17,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel();
+  final LoginViewModel _viewModel = instance<LoginViewModel>();
   final TextEditingController _userNameStreamController =
       TextEditingController();
   final TextEditingController _passwordStreamController =

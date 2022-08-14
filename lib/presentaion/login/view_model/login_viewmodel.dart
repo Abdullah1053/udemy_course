@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:udemy_course/presentaion/base/baseviewmodel.dart';
 import 'package:udemy_course/presentaion/common/freezed_data_casses.dart';
 
+import '../../../domain/usecase/login_usecase.dart';
+
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
   final StreamController _userNameStreamController =
@@ -14,10 +16,10 @@ class LoginViewModel extends BaseViewModel
       StreamController<bool>.broadcast();
 
   var loginObject = LoginObject("", "");
-  // late final LoginUseCase _loginUseCase;
+  late final LoginUseCase _loginUseCase;
+  LoginViewModel(this._loginUseCase);
   // LoginViewModel(this._loginUseCase);
-  // LoginViewModel(this._loginUseCase);
-  LoginViewModel();
+  // LoginViewModel();
 //inputs
   @override
   void dispose() {
@@ -27,8 +29,7 @@ class LoginViewModel extends BaseViewModel
   }
 
   @override
-  void start() {
-  }
+  void start() {}
 
   @override
   setPassword(String password) {
@@ -55,17 +56,17 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
-  //   (await _loginUseCase.execute(
-  //           LoginUseCaseInput(loginObject.userName, loginObject.password)))
-  //       .fold(
-  //           (failure) => {
-  //                 //left -> faild
-  //                 print(failure.message)
-  //               },
-  //           (data) => {
-  //                 //right -> data (success)
-  //                 print(data.customer?.name)
-  //               });
+    (await _loginUseCase.execute(
+            LoginUseCaseInput(loginObject.userName, loginObject.password)))
+        .fold(
+            (failure) => {
+                  //left -> faild
+                  print(failure.message)
+                },
+            (data) => {
+                  //right -> data (success)
+                  print(data.customer?.name)
+                });
   }
 
   //outputs

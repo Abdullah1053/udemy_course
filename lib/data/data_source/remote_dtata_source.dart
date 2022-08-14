@@ -8,7 +8,7 @@ abstract class ReomteDataSource {
 
 class ReomteDataSourceImpl implements ReomteDataSource {
   final AppServicesClient _appServicesClient;
-  ReomteDataSourceImpl(this._appServicesClient);
+  ReomteDataSourceImpl(this._appServicesClient, Object object);
   @override
   Future<AuthenticationsResponse> login(LoginRequest loginRequest) async {
     return await _appServicesClient.login(
